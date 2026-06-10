@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>构造创设研究室 | 南京工业大学</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --Y:#FADA00; --Yd:#E8C800; --Ys:#FFFBE0; --Yp:#FFFEF5;
+      --INK:#111111; --D:#222222; --T:#444444; --M:#999999; --L:#CCCCCC;
+      --BG:#FFFFFF; --BG2:#F7F7F5; --BG3:#F0F0EC; --BD:#EBEBEB;
+      --NW:230px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Noto Sans SC',sans-serif; background:var(--BG); color:var(--T); font-size:15px; line-height:1.8; }
+
+    /* ─── NAV ─── */
+    .nav { position:fixed; top:0; left:0; width:var(--NW); height:100vh; background:var(--BG); z-index:200; display:flex; flex-direction:column; border-right:1px solid #E8E8E0; }
+    .nav-top { padding:36px 28px 28px; border-bottom:1px solid #E8E8E0; }
+    .nav-logo-wrap { text-align:center; margin-bottom:12px; }
+    .nav-logo-img { width:200px; height:200px; object-fit:contain; display:block; margin:0 auto; }
+    .nav-labname { font-family:'Noto Serif SC',serif; font-size:14px; font-weight:900; color:var(--INK); line-height:1.3; margin-bottom:4px; }
+    .nav-uni { font-size:11px; color:var(--M); margin-top:5px; }
+    .nav-links { list-style:none; padding:18px 0; flex:1; overflow-y:auto; }
+    .nav-links li a { display:flex; align-items:center; justify-content:space-between; padding:9px 28px; color:var(--M); text-decoration:none; font-size:13px; font-weight:500; transition:all .2s; border-left:3px solid transparent; }
+    .nav-links li a:hover { color:var(--INK); background:var(--Yp); border-left-color:var(--Y); }
+    .nav-links li a.active { color:var(--INK); font-weight:700; background:var(--Ys); border-left-color:var(--Y); }
+    .nav-links li a .arrow { opacity:0; font-size:11px; transition:opacity .2s; }
+    .nav-links li a:hover .arrow, .nav-links li a.active .arrow { opacity:1; }
+    .nav-foot { padding:20px 28px; font-size:11px; color:var(--L); border-top:1px solid #E8E8E0; }
+
+    /* ─── MOBILE ─── */
+    .mhd { display:none; position:fixed; top:0; left:0; right:0; height:52px; background:var(--BG); border-bottom:3px solid var(--Y); align-items:center; justify-content:space-between; padding:0 20px; z-index:300; }
+    .mhd-name { font-family:'Noto Serif SC',serif; font-size:15px; font-weight:900; color:var(--INK); }
+    .hbg { background:none; border:none; cursor:pointer; display:flex; flex-direction:column; gap:5px; padding:4px; }
+    .hbg span { display:block; width:22px; height:2px; background:var(--INK); }
+    .mdr { display:none; position:fixed; top:52px; left:0; right:0; background:var(--BG); border-bottom:2px solid var(--Y); z-index:290; padding:10px 0 18px; box-shadow:0 8px 32px rgba(0,0,0,.1); }
+    .mdr.open { display:block; }
+    .mdr a { display:block; padding:11px 24px; color:var(--T); text-decoration:none; font-size:14px; }
+    .mdr a:hover { background:var(--Ys); }
+
+    /* ─── MAIN ─── */
+    .main { margin-left:var(--NW); }
+    section { padding:80px 72px; }
+
+    /* ─── HERO ─── */
+    #home { background:var(--Y); padding:0; min-height:100vh; display:grid; place-items:center; position:relative; overflow:hidden; }
+    #home::before {
+      content:'構造\A創設';
+      white-space:pre;
+      position:absolute; right:-40px; bottom:60px;
+      font-family:'Noto Serif SC',serif;
+      font-size:420px; font-weight:900; line-height:.88;
+      color:rgba(0,0,0,0.055);
+      pointer-events:none; user-select:none;
+      letter-spacing:-.02em;
+    }
+    .hero-inner { position:relative; z-index:1; padding:80px 72px; width:100%; max-width:1000px; }
+    .hero-kicker { display:inline-flex; align-items:center; gap:8px; background:rgba(0,0,0,0.08); color:var(--INK); font-size:11px; font-weight:700; letter-spacing:.12em; padding:5px 14px; border-radius:100px; margin-bottom:32px; }
+    .hero-kicker::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--INK); }
+    .hero-h1 { font-family:'Noto Serif SC',serif; font-size:64px; font-weight:900; color:var(--INK); line-height:1.1; margin-bottom:6px; }
+    .hero-h1 em { font-style:normal; position:relative; }
+    .hero-h1 em::after { content:''; position:absolute; left:0; bottom:4px; width:100%; height:6px; background:rgba(0,0,0,0.12); border-radius:3px; }
+    .hero-sub { font-size:16px; color:rgba(0,0,0,0.55); margin-bottom:40px; max-width:480px; line-height:1.9; }
+    .hero-white { background:var(--BG); border-radius:24px; padding:40px 44px; box-shadow:0 8px 48px rgba(0,0,0,.10),0 2px 8px rgba(0,0,0,.06); display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+    .hw-right { border-left:1px solid #EEEEEE; padding-left:40px; }
+    .hw-desc { font-size:14px; color:var(--M); line-height:2; margin-bottom:24px; }
+    .stat-row { display:flex; gap:28px; flex-wrap:wrap; margin-bottom:24px; }
+    .stat-item .sv { font-family:'Noto Serif SC',serif; font-size:34px; font-weight:900; color:var(--INK); line-height:1; }
+    .stat-item .sl { font-size:11px; color:var(--M); margin-top:3px; }
+    .tag-row { display:flex; gap:5px; flex-wrap:wrap; }
+    .ytag { background:var(--Y); color:var(--INK); font-size:12px; font-weight:700; padding:5px 13px; border-radius:100px; }
+    .news-label { font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--M); margin-bottom:14px; }
+    .nr { display:flex; gap:14px; padding:10px 0; border-bottom:1px solid #F0F0EC; }
+    .nr:last-of-type { border-bottom:none; }
+    .nr .d { font-size:11px; color:var(--M); white-space:nowrap; min-width:58px; font-weight:500; padding-top:2px; }
+    .nr .t { font-size:13px; color:var(--T); line-height:1.65; }
+    .hero-cta { display:inline-flex; align-items:center; gap:8px; margin-top:20px; background:var(--INK); color:var(--Y); font-size:13px; font-weight:700; padding:12px 22px; border-radius:10px; text-decoration:none; }
+    .hero-cta:hover { background:#333; }
+
+    /* ─── SECTION TITLES ─── */
+    .ey { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--M); font-weight:500; margin-bottom:8px; }
+    .stitle { font-family:'Noto Serif SC',serif; font-size:28px; font-weight:900; color:var(--INK); display:flex; align-items:flex-end; gap:16px; line-height:1; }
+    .stitle-en { font-size:13px; font-weight:400; color:var(--M); letter-spacing:.08em; padding-bottom:3px; font-family:'Noto Sans SC',sans-serif; }
+    .sh { display:flex; flex-direction:column; margin-bottom:44px; }
+    .sdivider { width:36px; height:4px; background:var(--Y); border-radius:2px; margin-top:14px; }
+
+    /* ─── RESEARCH ─── */
+    .rc-intro { font-size:15px; color:var(--M); line-height:2; max-width:780px; margin-bottom:36px; }
+    .rc-intro strong { color:var(--INK); font-weight:700; }
+    .rc-direction-label { font-size:11px; letter-spacing:.18em; color:var(--M); font-weight:700; text-transform:uppercase; margin-bottom:10px; }
+    .rc-hook { font-size:16px; font-weight:700; color:var(--INK); margin-bottom:12px; line-height:1.5; }
+    .rc-what-learn { background:var(--BG2); border-radius:12px; padding:16px 20px; margin-top:20px; }
+    .rc-wl-title { font-size:11px; letter-spacing:.12em; font-weight:700; color:var(--M); text-transform:uppercase; margin-bottom:10px; }
+    .rc-wl-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .wltag { font-size:12px; background:var(--BG); border:1.5px solid var(--BD); color:var(--T); padding:4px 12px; border-radius:100px; font-weight:500; }
+
+    /* AI 方向数字卡片 */
+    .rc-ai-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:24px; }
+    .rc-ai-card { background:var(--INK); border-radius:12px; padding:20px 16px; text-align:center; }
+    .rc-ai-card-num { font-family:'Noto Serif SC',serif; font-size:18px; font-weight:900; color:var(--Y); line-height:1; margin-bottom:6px; }
+    .rc-ai-card-lab { font-size:11px; color:rgba(255,255,255,.5); line-height:1.4; }
+    #research { background:var(--BG2); }
+    .rc-wrap { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .rc { background:var(--BG); border-radius:20px; padding:40px 44px; border:1px solid #EBEBEB; transition:transform .25s,box-shadow .25s; position:relative; overflow:hidden; }
+    .rc::after { content:attr(data-n); position:absolute; right:28px; top:16px; font-family:'Noto Serif SC',serif; font-size:80px; font-weight:900; color:rgba(250,218,0,.35); line-height:1; pointer-events:none; }
+    .rc:hover { transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.08); }
+    /* 卡片：文字在上，背景图从底部融入 */
+    .rc-top { position:relative; }
+    .rc-text { position:relative; z-index:2; }
+    .rc-bar { width:36px; height:5px; background:var(--Y); border-radius:3px; margin-bottom:18px; }
+    .rc h3 { font-family:'Noto Serif SC',serif; font-size:18px; font-weight:700; color:var(--INK); margin-bottom:12px; }
+    .rc p { font-size:14px; color:var(--M); line-height:1.95; }
+    .rc-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:18px; }
+    .rctag { font-size:11px; background:var(--Ys); color:#665200; padding:4px 12px; border-radius:100px; font-weight:600; border:1px solid rgba(250,218,0,.5); }
+    /* 背景图：紧贴卡片底部，高度约40%，从上向下渐变融合 */
+    .rc-bg-img {
+      position:absolute; left:-44px; right:-44px; bottom:-40px;
+      height:50;
+      overflow:hidden;
+      border-radius:0 0 20px 20px;
+    }
+    .rc-bg-img img {
+      width:100%; height:100%;
+      object-fit:cover; object-position:center 25%;
+      display:block;
+    }
+    .rc-bg-img::before {
+      content:'';
+      position:absolute; left:0; right:0; top:0; height:20%;
+      background: linear-gradient(to bottom, var(--BG) 0%, transparent 100%);
+      z-index:1;
+    }
+    .img-caption { display:none; }
+
+    /* ─── RESEARCH 卡片 & 能力培养 ─── */
+    .rc-direction-label { font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; color:var(--M); margin-bottom:12px; }
+    .rc-hook { font-size:15px; font-weight:700; color:var(--INK); margin-bottom:12px; line-height:1.6; }
+
+    /* 技术栈卡片 */
+    .rc-ai-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:18px 0; }
+    .rc-ai-card { background:var(--INK); border-radius:10px; padding:14px 12px; text-align:center; }
+    .rc-ai-card-num { font-family:'Noto Serif SC',serif; font-size:16px; font-weight:900; color:var(--Y); line-height:1.2; margin-bottom:4px; }
+    .rc-ai-card-lab { font-size:11px; color:rgba(255,255,255,.5); line-height:1.5; }
+
+    /* 能力培养标签 */
+    .rc-what-learn { background:rgba(255,255,255,0.75); backdrop-filter: blur(8px); border-radius:12px; padding:18px 20px; margin:20px 0; border:1px solid rgba(255,255,255,0.6); }
+    .rc-wl-title { font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--M); margin-bottom:12px; }
+    .rc-wl-tags { display:flex; flex-wrap:wrap; gap:8px; }
+    .wltag { font-size:12px; background:var(--BG); border:1.5px solid var(--BD); color:var(--T); padding:5px 14px; border-radius:100px; font-weight:500; }
+
+
+
+    /* ─── MEMBERS ─── */
+    #members { background:var(--BG); }
+    .grp-label { font-size:11px; letter-spacing:.16em; font-weight:700; color:var(--M); text-transform:uppercase; margin-top:48px; margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+    .grp-label::after { content:''; flex:1; height:1px; background:#EBEBEB; }
+    .grp-label:first-of-type { margin-top:0; }
+    .faculty-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .fcard { display:flex; gap:0; background:var(--BG2); border:1.5px solid #EBEBEB; border-radius:20px; overflow:hidden; text-decoration:none; color:inherit; transition:border-color .2s,box-shadow .2s,transform .2s; }
+    .fcard:hover { border-color:var(--Y); box-shadow:0 8px 32px rgba(250,218,0,.2); transform:translateY(-3px); }
+    .fcard-photo { width:220px; min-height:150px; flex-shrink:0; overflow:hidden; background:var(--Y); }
+    .fcard-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .fcard-body { flex:1; padding:22px 22px 20px; }
+    .fcard-name { font-family:'Noto Serif SC',serif; font-size:18px; font-weight:700; color:var(--INK); margin-bottom:3px; }
+    .fcard-role { font-size:14px; color:var(--M); margin-bottom:12px; line-height:1.6; }
+    .fcard-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+    .ftag { font-size:14px; background:var(--Y); color:var(--INK); padding:2px 10px; border-radius:100px; font-weight:700; }
+    .fcard-hint { font-size:14px; color:var(--M); }
+    .sgrid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+    .sc { background:var(--BG2); border:1.5px solid #EBEBEB; border-radius:14px; padding:18px 10px 14px; text-align:center; transition:border-color .2s,box-shadow .2s,transform .2s; display:flex; flex-direction:column; align-items:center; }
+    .sc:hover { border-color:var(--Y); box-shadow:0 4px 20px rgba(250,218,0,.18); transform:translateY(-2px); }
+    .sc-photo { width:56px; height:56px; border-radius:50%; overflow:hidden; margin-bottom:8px; background:var(--Y); flex-shrink:0; border:3px solid var(--BG); box-shadow:0 0 0 2px var(--Y); }
+    .sc-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .sc-name { font-weight:700; font-size:14px; color:var(--INK); margin-bottom:3px; }
+    .sc-meta { font-size:11px; color:var(--M); line-height:1.6; margin-bottom:6px; }
+    .mbti { background:var(--Y); color:var(--INK); font-size:10px; font-weight:700; padding:2px 9px; border-radius:100px; }
+    .sc-motto { font-size:11px; color:var(--M); margin-top:7px; font-style:italic; line-height:1.5; }
+
+    /* ─── PUBLICATIONS ─── */
+    #publications { background:var(--BG2); }
+    .pub-list { display:flex; flex-direction:column; gap:10px; }
+    .pi { background:var(--BG); border:1.5px solid #EBEBEB; border-radius:14px; padding:18px 24px; display:grid; grid-template-columns:48px 1fr; gap:16px; align-items:start; transition:border-color .2s,box-shadow .2s; }
+    .pi:hover { border-color:var(--Y); box-shadow:0 2px 16px rgba(250,218,0,.15); }
+    .pi-year { font-family:'Noto Serif SC',serif; font-size:15px; font-weight:900; color:var(--D); }
+    .pi-title { font-size:13.5px; font-weight:700; color:var(--INK); margin-bottom:4px; line-height:1.55; }
+    .pi-authors { font-size:12px; color:var(--M); margin-bottom:2px; }
+    .pi-journal { font-size:12px; color:var(--M); font-style:italic; }
+
+    /* ─── ALBUM ENTRY ─── */
+    .album-entry {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--INK); border-radius: 16px;
+      padding: 20px 28px; margin-bottom: 36px;
+      text-decoration: none; color: inherit;
+      transition: transform .2s, box-shadow .2s;
+      border: 2px solid var(--INK);
+    }
+    .album-entry:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,.15); background: #222; }
+    .album-entry-left { display: flex; align-items: center; gap: 18px; }
+    .album-icon { font-size: 28px; line-height: 1; }
+    .album-title { font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 900; color: var(--Y); margin-bottom: 3px; }
+    .album-sub { font-size: 12px; color: rgba(255,255,255,.45); letter-spacing: .04em; }
+    .album-arrow { font-size: 13px; font-weight: 700; color: var(--Y); white-space: nowrap; }
+
+    /* ─── ACTIVITIES ─── */
+    #activities { background:var(--BG); }
+    .act-list { display:flex; flex-direction:column; gap:0; }
+    .act-row {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--BD);
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+      border-radius: 8px;
+      padding-left: 12px;
+      padding-right: 12px;
+      margin: 0 -12px;
+    }
+    .act-row:first-child { border-top: 1px solid var(--BD); }
+    .act-row:hover { background: var(--Ys); }
+    .act-row:hover .act-row-arrow { opacity: 1; transform: translateX(0); }
+    .act-row-date { font-size: 12px; color: var(--M); font-weight: 600; letter-spacing: .06em; white-space: nowrap; }
+    .act-row-main {}
+    .act-row-name { font-size: 15px; font-weight: 700; color: var(--INK); margin-bottom: 2px; }
+    .act-row-note { font-size: 12px; color: var(--M); line-height: 1.5; }
+    .act-row-arrow {
+      font-size: 13px; font-weight: 700; color: var(--Yd);
+      opacity: 0; transform: translateX(-4px);
+      transition: opacity .2s, transform .2s;
+      white-space: nowrap;
+    }
+
+    /* ─── PLACEMENT ─── */
+    #placement { background:var(--BG2); }
+    .py-group { margin-bottom:44px; }
+    .py-label { font-family:'Noto Serif SC',serif; font-size:22px; font-weight:900; color:var(--INK); margin-bottom:18px; display:flex; align-items:center; gap:12px; }
+    .py-label::before { content:''; display:inline-block; width:8px; height:26px; background:var(--Y); border-radius:4px; }
+    .py-list { display:flex; flex-direction:column; }
+    .py-item { display:grid; grid-template-columns:88px 1fr; gap:16px; padding:12px 0; border-bottom:1px solid #EBEBEB; font-size:14px; }
+    .py-item:last-child { border-bottom:none; }
+    .py-name { font-weight:700; color:var(--INK); }
+    .py-dest { color:var(--M); }
+    .recruit-box { background:var(--Y); border-radius:18px; padding:30px 36px; margin-top:52px; font-size:14px; line-height:2; color:var(--INK); font-weight:500; }
+    .recruit-box a { color:var(--INK); font-weight:700; }
+
+    /* ─── CONTACT ─── */
+    #contact { background:var(--Y); padding:80px 72px; }
+    #contact .ey { color:rgba(0,0,0,.4); }
+    #contact .stitle { color:var(--INK); }
+    .contact-wrap { background:var(--BG); border-radius:24px; padding:48px 52px; box-shadow:0 8px 48px rgba(0,0,0,.10); }
+    .cgrid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+    .cl { font-size:11px; letter-spacing:.12em; color:var(--M); font-weight:700; text-transform:uppercase; margin-bottom:5px; }
+    .cv { font-size:14px; color:var(--INK); line-height:1.85; margin-bottom:22px; font-weight:500; }
+    .cv a { color:var(--INK); text-decoration:underline; text-underline-offset:3px; }
+    .map-ph { background:var(--Ys); border:2px dashed rgba(250,218,0,.6); border-radius:14px; height:200px; display:flex; align-items:center; justify-content:center; color:var(--M); font-size:13px; }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s,transform .6s; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width:960px) {
+      .nav { display:none; } .mhd { display:flex; }
+      .main { margin-left:0; padding-top:52px; }
+      section { padding:52px 22px; }
+      #home { padding:0; } .hero-inner { padding:40px 22px; } .hero-h1 { font-size:40px; }
+      .hero-white { grid-template-columns:1fr; gap:28px; }
+      .hw-right { border-left:none; padding-left:0; border-top:1px solid #EEE; padding-top:28px; }
+      .rc-wrap { grid-template-columns:1fr; } .rc-bg-img { display:none; }
+      .rc-gallery { grid-template-columns:repeat(2,1fr); }
+      .faculty-grid { grid-template-columns:1fr; }
+      .sgrid { grid-template-columns:repeat(2,1fr); }
+      .cgrid { grid-template-columns:1fr; } .contact-wrap { padding:28px 22px; }
+      #contact { padding:52px 22px; }
+      .pi { grid-template-columns:1fr; gap:4px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-top">
+    <div class="nav-logo-wrap">
+      <img src="images/lab-logo.png" alt="构造创设研究室" class="nav-logo-img">
+    </div>
+    <div class="nav-labname">构造创设研究室</div>
+    <div class="nav-uni">SmartStruct Lab</div>
+    <div class="nav-uni">Smart Structural Construction & Generation Lab</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home">首页 <span class="arrow">›</span></a></li>
+    <li><a href="#research">研究方向 <span class="arrow">›</span></a></li>
+    <li><a href="#members">在校成员 <span class="arrow">›</span></a></li>
+    <li><a href="#publications">学术成果 <span class="arrow">›</span></a></li>
+    <li><a href="#activities">团体活动 <span class="arrow">›</span></a></li>
+    <li><a href="#placement">学生培养 <span class="arrow">›</span></a></li>
+    <li><a href="#contact">联系方式 <span class="arrow">›</span></a></li>
+  </ul>
+  <div class="nav-foot">© 2026 构造创设研究室</div>
+</nav>
+
+<header class="mhd">
+  <span class="mhd-name">构造创设研究室</span>
+  <button class="hbg" onclick="toggleM()"><span></span><span></span><span></span></button>
+</header>
+<div class="mdr" id="mdr">
+  <a href="#home" onclick="closeM()">首页</a>
+  <a href="#research" onclick="closeM()">研究方向</a>
+  <a href="#members" onclick="closeM()">在校成员</a>
+  <a href="#publications" onclick="closeM()">学术成果</a>
+  <a href="#activities" onclick="closeM()">团体活动</a>
+  <a href="#placement" onclick="closeM()">学生培养</a>
+  <a href="#contact" onclick="closeM()">联系方式</a>
+</div>
+
+<main class="main">
+
+<!-- HOME -->
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-kicker">南京工业大学 · 土木工程学院 · 桥梁系</div>
+    <h1 class="hero-h1"><em>构造创设</em><br>研究室</h1>
+    <p class="hero-sub">以创新思维探索结构本质，推动桥梁工程与人工智能的深度融合。</p>
+    <div class="hero-white reveal">
+      <div class="hw-left">
+        <p class="hw-desc">研究室依托南京工业大学土木工程学院，围绕桥梁结构设计、性能演化与智慧运维开展研究，坚持"创新、协作、实践、成长"的育人理念，积极培养高层次土木工程人才。</p>
+        <div class="stat-row">
+          <div class="stat-item"><div class="sv">100+</div><div class="sl">累计培养人才</div></div>
+          <div class="stat-item"><div class="sv">50+</div><div class="sl">SCI/EI 论文</div></div>
+          <div class="stat-item"><div class="sv">30+</div><div class="sl">授权专利</div></div>
+        </div>
+        <div class="tag-row">
+          <span class="ytag">钢-混组合结构</span>
+          <span class="ytag">智慧运维</span>
+          <span class="ytag">结构健康监测</span>
+          <span class="ytag">智能检测</span>
+        </div>
+        <a class="hero-cta" href="#contact">联系我们加入课题组 →</a>
+      </div>
+      <div class="hw-right">
+        <div class="news-label">最新动态</div>
+        <div class="nr"><span class="d">2026.06</span><span class="t">2023级研究生暨查上博士毕业纪念晚会。</span></div>
+        <div class="nr"><span class="d">2026.06</span><span class="t">本科生王悦毕业论文被评为校优秀论文。</span></div>
+        <div class="nr"><span class="d">2026.04</span><span class="t">春游活动——浦口区老山东线16km穿越。</span></div>
+        <div class="nr"><span class="d">2026.03</span><span class="t">张磊以第一作者在《Journal of Building Engineering》（中科院一区TOP）发表论文。</span></div>
+        <div class="nr"><span class="d">2026.01</span><span class="t">课题组举行2026新春忘年会。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="sh reveal">
+    <div class="ey">RESEARCH</div>
+    <div class="stitle">研究方向 <span class="stitle-en">Research Areas</span></div>
+    <div class="sdivider"></div>
+  </div>
+
+  <div class="rc-wrap">
+
+    <!-- 方向 01 -->
+    <div class="rc reveal" data-n="01">
+      <div class="rc-top">
+        <div class="rc-text">
+          <div class="rc-bar"></div>
+          <div class="rc-direction-label">DIRECTION 01</div>
+          <h3>新型桥梁结构体系与性能演化</h3>
+          <p class="rc-hook">聚焦新型桥梁结构体系的设计理论与全寿命周期性能演化机制。</p>
+          <p>融合结构试验与高精度数值仿真，系统揭示结构在复杂受力状态及长期服役环境下的力学响应规律，构建基于试验验证的性能评估方法体系，研究成果直接服务于基础设施建设与安全运维决策。</p>
+          <div class="rc-ai-cards">
+            <div class="rc-ai-card"><div class="rc-ai-card-num">试验力学</div><div class="rc-ai-card-lab">结构加载试验与分析</div></div>
+            <div class="rc-ai-card"><div class="rc-ai-card-num">数值仿真</div><div class="rc-ai-card-lab">有限元多尺度建模</div></div>
+            <div class="rc-ai-card"><div class="rc-ai-card-num">性能评估</div><div class="rc-ai-card-lab">全寿命周期分析</div></div>
+            <div class="rc-ai-card"><div class="rc-ai-card-num">SCI / EI</div><div class="rc-ai-card-lab">高水平期刊发表</div></div>
+          </div>
+          <div class="rc-what-learn">
+            <div class="rc-wl-title">研究生能力培养</div>
+            <div class="rc-wl-tags">
+              <span class="wltag">结构试验设计与实施</span>
+              <span class="wltag">有限元建模与数值分析</span>
+              <span class="wltag">工程数据处理与解读</span>
+              <span class="wltag">SCI/EI 学术论文写作</span>
+              <span class="wltag">国家自然科学基金项目参与</span>
+            </div>
+          </div>
+          <div class="rc-tags">
+            <span class="rctag">新型结构体系</span>
+            <span class="rctag">全寿命周期性能</span>
+            <span class="rctag">工程耐久性</span>
+          </div>
+        </div>
+        <div class="rc-bg-img">
+          <img src="images/research1-main.jpg" alt="融合试验与数值仿真的钢-混组合桥力学性能研究">
+        </div>
+      </div>
+    </div>
+
+    <!-- 方向 02 -->
+    <div class="rc reveal" data-n="02">
+      <div class="rc-top">
+        <div class="rc-text">
+          <div class="rc-bar"></div>
+          <div class="rc-direction-label">DIRECTION 02</div>
+          <h3>数据驱动的基础设施智能感知与运维</h3>
+          <p class="rc-hook">面向基础设施全寿命周期智慧管养需求，探索土木工程与人工智能的深度交叉融合。</p>
+          <p>以机器学习与深度学习为核心工具，构建结构状态智能感知、损伤识别与长期性能预测的理论框架，推动基础设施运维决策向数据驱动、主动预防的范式转变。方向处于国际前沿交叉领域，学术发展空间广阔。</p>
+          <div class="rc-ai-cards">
+            <div class="rc-ai-card"><div class="rc-ai-card-num">Python</div><div class="rc-ai-card-lab">主要开发语言</div></div>
+            <div class="rc-ai-card"><div class="rc-ai-card-num">ML / DL</div><div class="rc-ai-card-lab">机器学习 · 深度学习</div></div>
+            <div class="rc-ai-card"><div class="rc-ai-card-num">Real Data</div><div class="rc-ai-card-lab">真实工程监测数据集</div></div>
+            <div class="rc-ai-card"><div class="rc-ai-card-num">SCI</div><div class="rc-ai-card-lab">高水平期刊发表</div></div>
+          </div>
+          <div class="rc-what-learn">
+            <div class="rc-wl-title">研究生能力培养</div>
+            <div class="rc-wl-tags">
+              <span class="wltag">机器学习模型构建与优化</span>
+              <span class="wltag">工程监测数据处理与可视化</span>
+              <span class="wltag">结构健康监测系统开发</span>
+              <span class="wltag">跨学科 SCI 论文写作</span>
+              <span class="wltag">JSPS · 国家基金项目参与</span>
+            </div>
+          </div>
+          <div class="rc-tags">
+            <span class="rctag">人工智能</span>
+            <span class="rctag">结构健康监测</span>
+            <span class="rctag">损伤识别</span>
+            <span class="rctag">数据驱动</span>
+          </div>
+        </div>
+        <div class="rc-bg-img">
+          <img src="images/research2-ml.png" alt="基础设施智能感知">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div><!-- rc-wrap 结束 -->
+
+    <div class="recruit-box reveal">
+      <strong>欢迎加入构造创设研究室！</strong>课题组每年招收保送及统考硕士研究生约5名，欢迎感兴趣的同学主动联系。<br>
+      邓文琴老师：<a href="mailto:dengwq@njtech.edu.cn">dengwq@njtech.edu.cn</a> · 顾建成老师：<a href="mailto:gujiancheng_panda@njtech.edu.cn">gujiancheng_panda@njtech.edu.cn</a>
+    </div>
+
+</section><!-- research 结束 -->
+</section>
+
+<!-- MEMBERS -->
+<section id="members">
+  <div class="sh reveal">
+    <div class="ey">MEMBERS</div>
+    <div class="stitle">在校成员 <span class="stitle-en">Our Team</span></div>
+    <div class="sdivider"></div>
+  </div>
+  <div class="grp-label">指导教员</div>
+  <div class="faculty-grid reveal">
+    <a class="fcard" href="deng.html">
+      <div class="fcard-photo"><img src="images/faculty-deng.jpg" alt="邓文琴"></div>
+      <div class="fcard-body">
+        <div class="fcard-name">邓文琴</div>
+        <div class="fcard-role">副教授 · 硕士生导师<br>桥梁系副主任</div>
+        <div class="fcard-tags"><span class="ftag">钢-混组合结构</span><span class="ftag">桥梁工业化建造</span></div>
+        <div class="fcard-hint">点击查看完整介绍 →</div>
+      </div>
+    </a>
+    <a class="fcard" href="gu.html">
+      <div class="fcard-photo"><img src="images/faculty-gu.png" alt="顾建成"></div>
+      <div class="fcard-body">
+        <div class="fcard-name">顾建成</div>
+        <div class="fcard-role">讲师 · 硕士生导师</div>
+        <div class="fcard-tags"><span class="ftag">结构耐久性</span><span class="ftag">智能检测</span></div>
+        <div class="fcard-hint">点击查看完整介绍 →</div>
+      </div>
+    </a>
+  </div>
+  <div class="grp-label">研究生三年级</div>
+  <div class="sgrid reveal">
+    <div class="sc"><div class="sc-photo"><img src="images/student-liu-wenxuan.jpg" alt="刘雯萱"></div><div class="sc-name">刘雯萱</div><div class="sc-meta">浙江湖州 · 旅行 · 小说</div><span class="mbti">ISFP</span><div class="sc-motto">淡淡的就会顺顺的。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-miao-chengxiang.jpg" alt="苗成祥"></div><div class="sc-name">苗成祥</div><div class="sc-meta">江苏连云港 · 篮球 · 音乐</div><span class="mbti">INFJ</span><div class="sc-motto">君子多识前言往行以畜其德。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-wang-jinxu.png" alt="王锦旭"></div><div class="sc-name">王锦旭</div><div class="sc-meta">江苏徐州 · 旅游 · 徒步</div><span class="mbti">INFP</span><div class="sc-motto">夜色难免黑凉，前行必有曙光。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-xue-mengxin.jpg" alt="薛梦馨"></div><div class="sc-name">薛梦馨</div><div class="sc-meta">江苏淮安 · 运动 · 美食</div><span class="mbti">ISTJ</span><div class="sc-motto">人生得意需尽欢。</div></div>
+  </div>
+  <div class="grp-label">研究生二年级</div>
+  <div class="sgrid reveal">
+    <div class="sc"><div class="sc-photo"><img src="images/student-luo-haitao.jpg" alt="骆海涛"></div><div class="sc-name">骆海涛</div><div class="sc-meta">安徽阜阳 · 健身 · 游戏</div><span class="mbti">ISFJ</span><div class="sc-motto">得之坦然，失之淡然，顺其自然。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-wang-xinyuan.jpg" alt="王新苑"></div><div class="sc-name">王新苑</div><div class="sc-meta">安徽淮南 · 看剧 · 小狗</div><span class="mbti">ESFJ</span><div class="sc-motto">人生缓缓自有答案。</div></div>
+  </div>
+  <div class="grp-label">研究生一年级</div>
+  <div class="sgrid reveal">
+    <div class="sc"><div class="sc-photo"><img src="images/student-li-chen.jpg" alt="李辰"></div><div class="sc-name">李辰</div><div class="sc-meta">江苏南京 · 运动 · 旅游</div><span class="mbti">ESTJ</span><div class="sc-motto">我跋山涉水，生命就随我流动。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-pan-qiang.jpg" alt="潘强"></div><div class="sc-name">潘强</div><div class="sc-meta">江苏南京 · 摄影 · 健身</div><span class="mbti">ENFP-T</span><div class="sc-motto">想这么多干嘛，开心最重要。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-xia-shiwu.jpg" alt="夏诗武"></div><div class="sc-name">夏诗武</div><div class="sc-meta">江苏南京 · 跑步 · 健身</div><span class="mbti">ISFJ</span><div class="sc-motto">不鸣则已，一鸣惊人。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-xu-chaoyang.jpg" alt="徐朝洋"></div><div class="sc-name">徐朝洋</div><div class="sc-meta">江苏高邮 · 足球 · 象棋</div><span class="mbti">INTJ-A</span><div class="sc-motto">阅世而知敛性，历事而后藏心。</div></div>
+    <div class="sc"><div class="sc-photo"><img src="images/student-zhang-lei.jpg" alt="张磊"></div><div class="sc-name">张磊</div><div class="sc-meta">江苏宿迁 · 音乐 · 健身</div><span class="mbti">ISTJ</span><div class="sc-motto">坚持就是胜利！</div></div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="sh reveal">
+    <div class="ey">PUBLICATIONS</div>
+    <div class="stitle">学术成果 <span class="stitle-en">Recent Papers</span></div>
+    <div class="sdivider"></div>
+  </div>
+  <p style="font-size:13px;color:var(--M);margin-bottom:24px;">近三年论文发表，无特殊说明论文第一作者为执笔撰写人。</p>
+  <div class="pub-list">
+    <div class="pi reveal"><div class="pi-year">2026</div><div><div class="pi-title">Seismic performance of steel tube-embedded socket-connected precast bridge piers: Experimental and finite element analysis</div><div class="pi-authors">W Deng, Z Xu, C Miao, Q Zhang, X Feng, J Gu, X He</div><div class="pi-journal">Engineering Structures, 359: 122751</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2026</div><div><div class="pi-title">Mechanical properties and bond strength prediction of large-diameter rebar grouted sleeve connections</div><div class="pi-authors">L Zhang, X Feng, J Gu, Z Wei, W Deng</div><div class="pi-journal">Journal of Building Engineering, 115987</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2026</div><div><div class="pi-title">Shear capacity evaluation and buckling mechanisms of composite I-girders with corrugated steel webs</div><div class="pi-authors">W Deng, S Zha, Z Liang, L Zhang, J Zhang, J Gu</div><div class="pi-journal">Case Studies in Construction Materials, e05926</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2026</div><div><div class="pi-title">An integrated framework for rapid inspection and mechanical performance evaluation of CFRP-strengthened RC piers</div><div class="pi-authors">J Gu, S Xia, Z Xie, W Deng, X He</div><div class="pi-journal">Case Studies in Construction Materials, e05821</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2026</div><div><div class="pi-title">Composite I-Girder Bridges with Corrugated Steel Webs and Flat Steel Webs: A Comparative Study</div><div class="pi-authors">Zha S, J Zhang, W Deng, J Gu</div><div class="pi-journal">Structural Engineering International, 1–13</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2025</div><div><div class="pi-title">Cracking behavior and crack width prediction in steel-concrete composite beams under negative bending moment</div><div class="pi-authors">S Zha, Q Song, J Zhang, W Deng, J Gu</div><div class="pi-journal">Engineering Structures, 345: 121554</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2025</div><div><div class="pi-title">Enhanced inferable capability in state estimation of dynamic systems exhibiting hysteresis/inelastic behavior</div><div class="pi-authors">X He, D Li, J Gu, J Dang, S Unjoh</div><div class="pi-journal">Mechanical Systems and Signal Processing, 225: 112282</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2024</div><div><div class="pi-title">Methodology for object-level change detection in post-earthquake building damage assessment</div><div class="pi-authors">Z Xie, Z Zhou, X He, Y Fu, J Gu, J Zhang</div><div class="pi-journal">Remote Sensing, 16(22): 4263</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2024</div><div><div class="pi-title">Experimental study on asynchronous construction for composite bridges with CSWs</div><div class="pi-authors">W Deng, H Xia, S Zha, H Pei, J Zhang, J Gu</div><div class="pi-journal">Case Studies in Construction Materials, 20: e02776</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2024</div><div><div class="pi-title">Flexural behavior of steel-laminated concrete composite beams with corrugated steel webs</div><div class="pi-authors">S Zha, W Deng, J Zhang, J Gu</div><div class="pi-journal">Engineering Structures, 306: 117802</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2024</div><div><div class="pi-title">Multi-scale characterization of SAP impact on self-healing behavior in UHPC</div><div class="pi-authors">Z Yang, C Miao, W Deng, J Zhang, J Gu</div><div class="pi-journal">Construction and Building Materials, 421: 135649</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2024</div><div><div class="pi-title">Advances in rapid damage identification for post-disaster buildings based on remote sensing images</div><div class="pi-authors">J Gu, Z Xie, J Zhang, X He</div><div class="pi-journal">Buildings, 14(4): 898</div></div></div>
+    <div class="pi reveal"><div class="pi-year">2024</div><div><div class="pi-title">Calculation method for flexural capacity of composite girders with corrugated steel webs</div><div class="pi-authors">S Zha, J Zhang, W Deng, J Gu</div><div class="pi-journal">Journal of Constructional Steel Research, 214: 108476</div></div></div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities">
+  <div class="sh reveal">
+    <div class="ey">ACTIVITIES</div>
+    <div class="stitle">团体活动 <span class="stitle-en">Lab Life</span></div>
+    <div class="sdivider"></div>
+  </div>
+  <!-- 相册入口 -->
+  <a href="memories.html" class="album-entry reveal">
+    <div class="album-entry-left">
+      <div class="album-icon">📷</div>
+      <div>
+        <div class="album-title">查看完整相册</div>
+        <div class="album-sub">Lab Memories</div>
+      </div>
+    </div>
+    <div class="album-arrow">打开相册 →</div>
+  </a>
+
+  <div class="act-list reveal">
+    <a class="act-row" href="memories.html#graduation-2026">
+      <span class="act-row-date">2026 / 06</span>
+      <div class="act-row-main"><div class="act-row-name">2023级毕业生合照</div><div class="act-row-note">学位袍、石碑前，定格毕业这一刻</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
+    <a class="act-row" href="memories.html#hiking-2026">
+      <span class="act-row-date">2026 / 04</span>
+      <div class="act-row-main"><div class="act-row-name">雨后穿越老山东线</div><div class="act-row-note">16km，泥泞山路，互相拉着走完全程</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
+    <a class="act-row" href="memories.html#newyear-2026">
+      <span class="act-row-date">2026 / 01</span>
+      <div class="act-row-main"><div class="act-row-name">2026年新春忘年会</div><div class="act-row-note">霓虹灯下，一起迎接新年</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
+    <a class="act-row" href="memories.html#camping-2025">
+      <span class="act-row-date">2025 / 11</span>
+      <div class="act-row-main"><div class="act-row-name">象山湖公园露营</div><div class="act-row-note">厨师组 · 麻将组 · 狼人杀组，最后围一起干杯</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
+    <a class="act-row" href="memories.html#welcome-2025">
+      <span class="act-row-date">2025 / 09</span>
+      <div class="act-row-main"><div class="act-row-name">2025级新生欢迎会</div><div class="act-row-note">新成员加入，一桌好菜，迎接新的一年</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
+    <a class="act-row" href="memories.html#farewell-2025">
+      <span class="act-row-date">2025 / 06</span>
+      <div class="act-row-main"><div class="act-row-name">2022级毕业生欢送会</div><div class="act-row-note">举杯送别要离开的人</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
+    <a class="act-row" href="memories.html#hiking-2024">
+      <span class="act-row-date">2024 / 12</span>
+      <div class="act-row-main"><div class="act-row-name">老山东线徒步</div><div class="act-row-note">岁末登山，山顶的风很大，合影格外清晰</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
+  </div>
+</section>
+
+<!-- PLACEMENT -->
+<section id="placement">
+  <div class="sh reveal">
+    <div class="ey">PLACEMENT</div>
+    <div class="stitle">学生培养 <span class="stitle-en">Graduate Placement</span></div>
+    <div class="sdivider"></div>
+  </div>
+  <p style="font-size:13px;color:var(--M);margin-bottom:32px;">按毕业时间与姓氏拼音排序。</p>
+  <div class="py-group reveal"><div class="py-label">2026届</div><div class="py-list">
+    <div class="py-item"><span class="py-name">查上</span><span class="py-dest">南京交通集团，管培生</span></div>
+    <div class="py-item"><span class="py-name">苗成祥</span><span class="py-dest">中天科技海缆，结构仿真工程师</span></div>
+    <div class="py-item"><span class="py-name">王锦旭</span><span class="py-dest">offer待定</span></div>
+    <div class="py-item"><span class="py-name">薛梦馨</span><span class="py-dest">offer待定</span></div>
+    <div class="py-item"><span class="py-name">刘雯萱</span><span class="py-dest">offer待定</span></div>
+    <div class="py-item"><span class="py-name">王悦</span><span class="py-dest">东南大学，攻读硕士学位（本科生）</span></div>
+  </div></div>
+  <div class="py-group reveal"><div class="py-label">2025届</div><div class="py-list">
+    <div class="py-item"><span class="py-name">陈竺</span><span class="py-dest">奇瑞捷豹路虎汽车有限公司，区域交付部门</span></div>
+    <div class="py-item"><span class="py-name">蒋彬彬</span><span class="py-dest">脱产考公</span></div>
+    <div class="py-item"><span class="py-name">沈航</span><span class="py-dest">招商银行南京分行，理财经理</span></div>
+    <div class="py-item"><span class="py-name">沈业柱</span><span class="py-dest">苏州人工智能实验室，CAE部产品经理</span></div>
+    <div class="py-item"><span class="py-name">石春苗</span><span class="py-dest">中石化项目管理有限公司，工程管理部业务员</span></div>
+    <div class="py-item"><span class="py-name">谢正涛</span><span class="py-dest">日本埼玉大学，攻读博士学位（文部省全额奖学金）</span></div>
+    <div class="py-item"><span class="py-name">张笑宇</span><span class="py-dest">小鲷（常州）机械有限公司，工艺技术员</span></div>
+  </div></div>
+  <div class="py-group reveal"><div class="py-label">2024届</div><div class="py-list">
+    <div class="py-item"><span class="py-name">吕厚鑫</span><span class="py-dest">江苏京沪高速公路有限公司，宁扬管理处工程科科员</span></div>
+    <div class="py-item"><span class="py-name">杨在欣</span><span class="py-dest">江苏现代路桥有限责任公司，工程管理岗</span></div>
+    <div class="py-item"><span class="py-name">张汶金</span><span class="py-dest">合肥市智慧交通投资运营有限公司，工程管理岗</span></div>
+    <div class="py-item"><span class="py-name">周自凡</span><span class="py-dest">苏交科集团股份有限公司，长大桥监测中心研发岗</span></div>
+  </div></div>
+  <div class="py-group reveal"><div class="py-label">2023届</div><div class="py-list">
+    <div class="py-item"><span class="py-name">刘腾飞</span><span class="py-dest">中铁桥隧技术有限公司，特种工程所工程师</span></div>
+    <div class="py-item"><span class="py-name">彭宗卿</span><span class="py-dest">苏交科集团股份有限公司，道桥规划设计一所工程师</span></div>
+    <div class="py-item"><span class="py-name">宋启港</span><span class="py-dest">中芯国际集成电路制造有限公司，湿法刻蚀设备工程师</span></div>
+  </div></div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sh reveal">
+    <div class="ey">CONTACT</div>
+    <div class="stitle">联系方式 <span class="stitle-en">Get in Touch</span></div>
+    <div class="sdivider" style="background:rgba(0,0,0,0.2)"></div>
+  </div>
+  <div class="contact-wrap reveal">
+    <div class="cgrid">
+      <div>
+        <div class="cl">单位</div><div class="cv">南京工业大学 土木工程学院 桥梁系</div>
+        <div class="cl">地址</div><div class="cv">江苏省南京市浦口区浦珠南路30号<br>南京工业大学江浦校区</div>
+        <div class="cl">邓文琴老师</div><div class="cv"><a href="mailto:dengwq@njtech.edu.cn">dengwq@njtech.edu.cn</a><br><a href="mailto:deng_hust@163.com">deng_hust@163.com</a></div>
+        <div class="cl">顾建成老师</div><div class="cv"><a href="mailto:gujiancheng_panda@njtech.edu.cn">gujiancheng_panda@njtech.edu.cn</a></div>
+      </div>
+      <iframe src="https://map.baidu.com/?latlng=32.088645,118.646354&title=南京工业大学江浦校区&content=江苏省南京市浦口区浦珠南路30号&output=embed" width="100%" height="200" style="border:none; border-radius:14px;"></iframe>
+    </div>
+  </div>
+</section>
+
+</main>
+<script>
+  function toggleM() { document.getElementById('mdr').classList.toggle('open'); }
+  function closeM() { document.getElementById('mdr').classList.remove('open'); }
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  secs.forEach(s => {
+    new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(a => a.classList.remove('active'));
+          const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-40% 0px -55% 0px' }).observe(s);
+  });
+  const ro = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { rootMargin:'0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>

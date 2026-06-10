@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>邓文琴 | 构造创设研究室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--Y:#FADA00;--Ys:#FFFBE0;--Yp:#FFFEF5;--INK:#111;--D:#222;--T:#444;--M:#999;--BG:#FFF;--BG2:#F7F7F5;--BD:#EBEBEB}
+    body{font-family:'Noto Sans SC',sans-serif;background:var(--BG);color:var(--T);font-size:15px;line-height:1.8}
+    .tb{position:sticky;top:0;background:var(--BG);border-bottom:3px solid var(--Y);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;z-index:100;box-shadow:0 1px 12px rgba(0,0,0,.06)}
+    .tb-back{color:var(--M);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s;display:flex;align-items:center;gap:6px}
+    .tb-back:hover{color:var(--INK)}
+    .tb-lab{font-family:'Noto Serif SC',serif;font-size:13px;color:var(--M)}
+    .hw{background:var(--Y);padding:52px 72px;position:relative;overflow:hidden}
+    .hw::before{
+      content:'邓文琴\A副教授';
+      white-space:pre;
+      position:absolute; right:-30px; bottom:40px;
+      font-family:'Noto Serif SC',serif;
+      font-size:320px; font-weight:900; line-height:.88;
+      color:rgba(0,0,0,.055);
+      pointer-events:none; user-select:none;
+      letter-spacing:-.02em;
+    }
+    .hcard{background:var(--BG);border-radius:24px;padding:40px 44px;display:grid;grid-template-columns:160px 1fr;gap:40px;align-items:start;box-shadow:0 8px 40px rgba(0,0,0,.10);position:relative;z-index:1;max-width:900px}
+    .photo-box{width:160px;height:200px;border-radius:16px;overflow:hidden;background:var(--Ys);border:3px solid var(--Y);flex-shrink:0;position:relative}
+    .photo-box img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+    .photo-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+    .photo-ph .ini{font-family:'Noto Serif SC',serif;font-size:56px;font-weight:900;color:rgba(0,0,0,.18);line-height:1}
+    .photo-ph .hint{font-size:11px;color:rgba(0,0,0,.35);text-align:center;line-height:1.5}
+    .p-name{font-family:'Noto Serif SC',serif;font-size:32px;font-weight:900;color:var(--INK);margin-bottom:5px}
+    .p-role{font-size:14px;color:var(--M);margin-bottom:16px;line-height:1.6}
+    .p-badges{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+    .badge{font-size:12px;background:var(--Y);color:var(--INK);padding:4px 13px;border-radius:100px;font-weight:700}
+    .badge-dk{font-size:12px;background:var(--INK);color:rgba(255,255,255,.82);padding:4px 13px;border-radius:100px;font-weight:500}
+    .p-bio{font-size:14px;color:var(--T);line-height:2;max-width:500px;margin-bottom:18px}
+    .p-links{display:flex;gap:10px;flex-wrap:wrap}
+    .ext{font-size:13px;color:var(--INK);text-decoration:none;background:var(--Y);padding:7px 18px;border-radius:100px;font-weight:700;transition:opacity .2s}
+    .ext:hover{opacity:.8}
+    .body{max-width:900px;margin:0 auto;padding:0 72px 80px}
+    .sec{padding-top:52px}
+    .sec-hd{display:flex;align-items:flex-end;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:3px solid var(--Y)}
+    .sec-ey{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--M);font-weight:700;padding-bottom:2px}
+    .sec-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:900;color:var(--INK)}
+    .stats{display:flex;gap:0;border:1.5px solid var(--BD);border-radius:14px;overflow:hidden;margin-bottom:24px}
+    .stat{padding:16px 22px;border-right:1px solid var(--BD);flex:1}
+    .stat:last-child{border-right:none}
+    .sv{font-family:'Noto Serif SC',serif;font-size:28px;font-weight:900;color:var(--INK);line-height:1}
+    .sl{font-size:11px;color:var(--M);margin-top:4px}
+    .cv{width:100%;border-collapse:collapse}
+    .cv tr{border-bottom:1px solid var(--BD)}
+    .cv td{padding:12px 0;vertical-align:top;font-size:14px}
+    .cv td:first-child{width:170px;color:var(--M);font-size:13px;padding-right:20px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .rtag{font-size:13px;background:var(--BG2);border:1.5px solid var(--BD);color:var(--T);padding:6px 16px;border-radius:100px;transition:border-color .2s,background .2s}
+    .rtag:hover{border-color:var(--Y);background:var(--Ys)}
+    .hobby-text{font-size:14px;color:var(--M);line-height:2}
+    @media(max-width:700px){.hw{padding:28px 18px}.hcard{grid-template-columns:1fr;gap:22px;padding:26px 22px}.photo-box{width:110px;height:140px}.body{padding:0 18px 60px}.tb{padding:0 18px}.stats{flex-wrap:wrap}.stat{border-right:none;border-bottom:1px solid var(--BD)}.stat:last-child{border-bottom:none}}
+  </style>
+</head>
+<body>
+<div class="tb">
+  <a class="tb-back" href="index.html#members">← 返回在校成员</a>
+  <div class="tb-right">
+    <img src="images/lab-logo.png" alt="logo" style="width:32px;height:32px;object-fit:contain;vertical-align:middle;margin-right:8px;">
+    <span class="tb-lab">构造创设研究室</span>
+  </div>
+</div>
+<div class="hw">
+  <div class="hcard">
+    <!-- 照片框：将下面的 div.photo-ph 替换为 <img src="photos/deng.jpg" alt="邓文琴"> -->
+    <div class="photo-box">
+      <img src="images/faculty-deng.jpg" alt="邓文琴">
+    </div>
+    <div>
+      <div class="p-name">邓文琴</div>
+      <div class="p-role">副教授 · 硕士生导师<br>南京工业大学土木工程学院桥梁系副主任</div>
+      <div class="p-badges">
+        <span class="badge">钢-混组合结构</span>
+        <span class="badge">桥梁工业化建造</span>
+        <span class="badge-dk">2024 江苏省青蓝工程优秀青年骨干教师</span>
+        <span class="badge-dk">2020 江苏省双创博士</span>
+        <span class="badge-dk">2022 南工大青年创新学者</span>
+      </div>
+      <p class="p-bio">1991年生，江西抚州人，学科教授，硕士生导师，南京工业大学土木工程学院桥梁系副主任。入选2024江苏省高校"青蓝工程"优秀青年骨干教师、2020年江苏省"双创博士"和2022年南京工业大学拓原工程"青年创新学者"。</p>
+      <div class="p-links">
+        <a class="ext" href="https://www.researchgate.net/profile/Wenqin-Deng-2" target="_blank">ResearchGate ↗</a>
+        <a class="ext" href="mailto:dengwq@njtech.edu.cn">发送邮件</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="body">
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-ey">OVERVIEW</span><span class="sec-title">科研概况</span></div>
+    <div class="stats">
+      <div class="stat"><div class="sv">8</div><div class="sl">主持纵向项目</div></div>
+      <div class="stat"><div class="sv">50+</div><div class="sl">SCI/EI 论文</div></div>
+      <div class="stat"><div class="sv">20+</div><div class="sl">授权专利</div></div>
+      <div class="stat"><div class="sv">10+</div><div class="sl">省部级科学技术奖</div></div>
+    </div>
+    <p style="font-size:14px;color:var(--M);line-height:2">主持国家自然科学基金面上项目、青年项目等纵向项目8项，作为主要参与人参加10余项省部级纵向课题。发表SCI/EI论文50余篇，授权专利20余项，参编团体/地方标准8部，获省部级科学技术奖10余项。担任建筑结构学报、中国公路学报、Engineering Structures、Thin-walled Structures 等期刊审稿人。</p>
+  </div>
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-ey">RESEARCH</span><span class="sec-title">研究方向</span></div>
+    <div class="tags">
+      <span class="rtag">钢-混组合结构桥梁</span>
+      <span class="rtag">桥梁工业化建造技术</span>
+      <span class="rtag">装配式桥梁结构</span>
+      <span class="rtag">波纹钢腹板组合梁</span>
+      <span class="rtag">桥梁抗震性能</span>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-ey">EDUCATION</span><span class="sec-title">受教育经历</span></div>
+    <table class="cv">
+      <tr><td>2008.09 — 2012.06</td><td>华东交通大学，桥梁工程，工学学士</td></tr>
+      <tr><td>2012.09 — 2018.12</td><td>华中科技大学，桥梁与隧道工程，工学博士</td></tr>
+    </table>
+  </div>
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-ey">EXPERIENCE</span><span class="sec-title">研究工作经历</span></div>
+    <table class="cv">
+      <tr><td>2019.01 — 2021.09</td><td>南京工业大学，土木工程学院桥梁系，讲师</td></tr>
+      <tr><td>2021.10 — 2025.12</td><td>南京工业大学，土木工程学院桥梁系，副教授</td></tr>
+      <tr><td>2023.01 — 至今</td><td>南京工业大学，土木工程学院桥梁系，副主任</td></tr>
+    </table>
+  </div>
+  <div class="sec">
+    <div class="sec-hd"><span class="sec-ey">HOBBIES</span><span class="sec-title">兴趣爱好</span></div>
+    <p class="hobby-text">喜欢小朋友，热爱露营、羽毛球和网球运动，享受亲近自然与运动带来的乐趣；不喜欢羊肉。</p>
+  </div>
+</div>
+</body>
+</html>
