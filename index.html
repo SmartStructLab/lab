@@ -7,6 +7,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
+
+    /* ─── OPEN SOURCE ─── */
+#opensource { background:var(--BG); }
+.os-card { background:var(--BG2); border:1.5px solid var(--BD); border-radius:16px; padding:32px 36px; display:flex; align-items:center; justify-content:space-between; gap:32px; }
+.os-tag { display:inline-block; background:var(--Y); color:var(--INK); font-size:11px; font-weight:700; padding:3px 12px; border-radius:100px; margin-bottom:12px; }
+.os-title { font-family:'Noto Serif SC',serif; font-size:18px; font-weight:900; color:var(--INK); margin-bottom:4px; }
+.os-en { font-size:13px; color:var(--M); margin-bottom:20px; }
+.os-cite { background:var(--BG); border-left:3px solid var(--Y); padding:14px 18px; border-radius:0 8px 8px 0; }
+.os-desc { font-size:13px; color:var(--M); margin-bottom:16px; line-height:1.8; }
+.os-cite-label { font-size:11px; font-weight:700; color:var(--M); letter-spacing:.1em; margin-bottom:6px; }
+.os-cite-text { font-size:13px; color:var(--T); line-height:1.8; }
+.os-btn { flex-shrink:0; background:var(--INK); color:var(--Y); font-size:14px; font-weight:700; padding:14px 28px; border-radius:10px; text-decoration:none; white-space:nowrap; transition:background .2s; }
+.os-btn:hover { background:#333; }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --Y:#FADA00; --Yd:#E8C800; --Ys:#FFFBE0; --Yp:#FFFEF5;
@@ -309,6 +323,7 @@
     <li><a href="#research">研究方向 <span class="arrow">›</span></a></li>
     <li><a href="#members">在校成员 <span class="arrow">›</span></a></li>
     <li><a href="#publications">学术成果 <span class="arrow">›</span></a></li>
+    <li><a href="#opensource">开源资料 <span class="arrow">›</span></a></li>
     <li><a href="#activities">团体活动 <span class="arrow">›</span></a></li>
     <li><a href="#placement">学生培养 <span class="arrow">›</span></a></li>
     <li><a href="#contact">联系方式 <span class="arrow">›</span></a></li>
@@ -325,6 +340,7 @@
   <a href="#research" onclick="closeM()">研究方向</a>
   <a href="#members" onclick="closeM()">在校成员</a>
   <a href="#publications" onclick="closeM()">学术成果</a>
+  <a href="#opensource" onclick="closeM()">开源资料</a>
   <a href="#activities" onclick="closeM()">团体活动</a>
   <a href="#placement" onclick="closeM()">学生培养</a>
   <a href="#contact" onclick="closeM()">联系方式</a>
@@ -539,6 +555,30 @@
     <div class="pi reveal"><div class="pi-year">2024</div><div><div class="pi-title">Calculation method for flexural capacity of composite girders with corrugated steel webs</div><div class="pi-authors">S Zha, J Zhang, W Deng, J Gu</div><div class="pi-journal">Journal of Constructional Steel Research, 214: 108476</div></div></div>
   </div>
 </section>
+  <!-- OPEN SOURCE -->
+<section id="opensource">
+  <div class="sh reveal">
+    <img src="images/icon-opensource.jpg" alt="" class="section-icon">
+    <div>
+      <div class="ey">OPEN SOURCE</div>
+      <div class="stitle">开源资料 <span class="stitle-en">Open Datasets</span></div>
+      <div class="sdivider"></div>
+    </div>
+  </div>
+
+  <div class="os-card reveal">
+    <div class="os-left">
+      <div class="os-tag">Dataset</div>
+      <div class="os-title">土耳其地震 · 损毁房屋检测数据集</div>
+      <div class="os-en">Turkey Earthquake-Damaged Building Detection Dataset</div>
+      <div class="os-desc">This dataset supports object-level change detection for post-earthquake building damage assessment based on remote sensing images.</div>
+<div class="os-cite">
+  <div class="os-cite-label">使用时请引用论文 · Please cite the paper when using</div>
+  <div class="os-cite-text">Z Xie, Z Zhou, X He, Y Fu, J Gu, J Zhang. Methodology for object-level change detection in post-earthquake building damage assessment based on remote sensing images: OCD-BDA[J]. <em>Remote Sensing</em>, 2024, 16(22): 4263.</div>
+</div>
+    <a href="https://zenodo.org/records/20815559" class="os-btn" target="_blank">下载数据集 →</a>
+  </div>
+</section>
 
 <!-- ACTIVITIES -->
 <section id="activities">
@@ -564,6 +604,11 @@
   </a>
 
   <div class="act-list reveal">
+    <a class="act-row" href="memories.html#dinner-2026">
+      <span class="act-row-date">2026 / 06</span>
+      <div class="act-row-main"><div class="act-row-name">2023级硕士毕业生暨查上博士毕业纪念晚宴</div><div class="act-row-note">毕业致辞、求婚现场、全员大合照</div></div>
+      <span class="act-row-arrow">查看照片 →</span>
+    </a>
     <a class="act-row" href="memories.html#graduation-2026">
       <span class="act-row-date">2026 / 06</span>
       <div class="act-row-main"><div class="act-row-name">2023级毕业生合照</div><div class="act-row-note">学位袍、石碑前，定格毕业这一刻</div></div>
